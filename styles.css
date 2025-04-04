@@ -1,0 +1,237 @@
+/* Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-bg: #1a1a1a;
+    --accent: #ffcc00;
+    --text: #ffffff;
+    --secondary-text: #cccccc;
+    --btn-bg: #ff4444;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    background-color: var(--primary-bg);
+    color: var(--text);
+    line-height: 1.6;
+}
+
+h1, h2, h3 {
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Header */
+.header {
+    padding: 1rem 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(26, 26, 26, 0.9);
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 1.8rem;
+    color: var(--text);
+    text-decoration: none;
+}
+
+.logo span {
+    color: var(--accent);
+}
+
+.navbar a {
+    color: var(--text);
+    text-decoration: none;
+    margin-left: 2rem;
+    transition: color 0.3s;
+}
+
+.navbar a:hover {
+    color: var(--accent);
+}
+
+.btn {
+    background-color: var(--btn-bg);
+    color: var(--text);
+    padding: 0.8rem 1.5rem;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.btn:hover {
+    background-color: #ff3333;
+}
+
+.hamburger {
+    display: none;
+    cursor: pointer;
+}
+
+/* Hero Section */
+.hero {
+    height: 100vh;
+    /* Local hosted image */
+background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+            url("https://images.pexels.com/photos/260922/pexels-photo-260922.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2") center/cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding-top: 80px;
+}
+
+.hero-content h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    color: var(--secondary-text);
+}
+
+/* Menu Section */
+.menu {
+    padding: 5rem 5%;
+}
+
+.menu h2 {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.menu-item {
+    background-color: #2a2a2a;
+    padding: 1.5rem;
+    border-radius: 10px;
+}
+
+.menu-item h3 {
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+}
+
+.price {
+    color: var(--btn-bg);
+    font-weight: bold;
+}
+
+/* Footer */
+.footer {
+    background-color: #0d0d0d;
+    padding: 3rem 5%;
+    margin-top: 5rem;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.social-links a {
+    color: var(--text);
+    margin-right: 1rem;
+    font-size: 1.5rem;
+}
+
+.social-links a:hover {
+    color: var(--accent);
+}
+
+.copyright {
+    text-align: center;
+    padding-top: 2rem;
+    border-top: 1px solid #333;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hamburger {
+        display: block;
+    }
+
+    .navbar {
+        position: fixed;
+        top: 80px;
+        right: -100%;
+        background-color: var(--primary-bg);
+        width: 100%;
+        height: calc(100vh - 80px);
+        flex-direction: column;
+        align-items: center;
+        transition: right 0.3s;
+    }
+
+    .navbar.active {
+        right: 0;
+    }
+
+    .navbar a {
+        margin: 1.5rem 0;
+    }
+
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+}
+
+/* Hide extra items by default */
+.menu-item.hidden {
+    display: none;
+  }
+  
+  /* "See More" Button Styling */
+  .see-more {
+    background: var(--accent);
+    color: var(--primary-bg);
+    border: none;
+    padding: 0.8rem 2rem;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 1rem auto;
+    display: block;
+    transition: background 0.3s;
+  }
+  
+  .see-more:hover {
+    background: #ffd700; /* Brighter gold on hover */
+  }
+
+  /* Hide extra items by default */
+.menu-item.hidden {
+    display: none;
+  }
+  
+  /* "See More" Button Styling */
+  .see-more {
+    background: var(--accent);
+    color: var(--primary-bg);
+    border: none;
+    padding: 0.8rem 2rem;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 1rem auto;
+    display: block;
+    transition: background 0.3s;
+  }
+  
+  .see-more:hover {
+    background: #ffd700; /* Brighter gold on hover */
+  }

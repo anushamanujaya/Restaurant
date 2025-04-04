@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Bistro Noir</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Open+Sans&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Base Styles */
+        :root {
+            --primary-bg: #1a1a1a;
+            --accent: #ffcc00;
+            --text: #ffffff;
+            --secondary-text: #cccccc;
+            --btn-bg: #ff4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: var(--primary-bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* Header */
+        .header {
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgba(26, 26, 26, 0.9);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            color: var(--text);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        .navbar {
+            display: flex;
+        }
+
+        .navbar a {
+            color: var(--text);
+            text-decoration: none;
+            margin-left: 2rem;
+            transition: color 0.3s;
+        }
+
+        .navbar a:hover {
+            color: var(--accent);
+        }
+
+        .btn {
+            background-color: var(--btn-bg);
+            color: var(--text);
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #ff3333;
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            padding: 8rem 5% 5rem;
+            min-height: 100vh;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--accent);
+        }
+
+        .contact-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+        }
+
+        .contact-info {
+            background: #2a2a2a;
+            padding: 2.5rem;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .info-group {
+            margin-bottom: 2rem;
+        }
+
+        .info-group h3 {
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .info-group i {
+            font-size: 1.2rem;
+        }
+
+        .info-group p, .info-group a {
+            color: var(--secondary-text);
+            margin-left: 2rem;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .info-group a:hover {
+            color: var(--accent);
+        }
+
+        .contact-form {
+            background: #2a2a2a;
+            padding: 2.5rem;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--accent);
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 5px;
+            color: var(--text);
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 2px rgba(255, 204, 0, 0.2);
+        }
+
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            background: var(--accent);
+            color: var(--primary-bg);
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: block;
+            width: 100%;
+        }
+
+        .submit-btn:hover {
+            background: #ffd700;
+            transform: translateY(-2px);
+        }
+
+        /* Map */
+        .map-container {
+            height: 300px;
+            margin-top: 2rem;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Hours Section */
+        .hours-section {
+            margin-top: 3rem;
+        }
+
+        .hours-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+
+        .hours-table tr:nth-child(even) {
+            background-color: #222;
+        }
+
+        .hours-table th, .hours-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #333;
+        }
+
+        .hours-table th {
+            color: var(--accent);
+        }
+
+        /* Confirmation Modal */
+        .confirmation-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            background: #2a2a2a;
+            width: 90%;
+            max-width: 500px;
+            padding: 2.5rem;
+            border-radius: 10px;
+            text-align: center;
+            position: relative;
+            animation: slideUp 0.4s ease;
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .modal-content h3 {
+            font-size: 1.8rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .modal-content p {
+            margin-bottom: 1.5rem;
+            color: var(--secondary-text);
+        }
+
+        .modal-content .btn {
+            margin-top: 1.5rem;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #0d0d0d;
+            padding: 3rem 5%;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+
+        .footer-section p {
+            margin-bottom: 1rem;
+            color: var(--secondary-text);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-links a {
+            color: var(--text);
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--accent);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #333;
+            color: var(--secondary-text);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+
+            .navbar {
+                position: fixed;
+                top: 80px;
+                right: -100%;
+                background-color: var(--primary-bg);
+                width: 100%;
+                height: calc(100vh - 80px);
+                flex-direction: column;
+                align-items: center;
+                padding: 2rem 0;
+                transition: right 0.3s ease;
+            }
+
+            .navbar.active {
+                right: 0;
+            }
+
+            .navbar a {
+                margin: 1rem 0;
+                font-size: 1.2rem;
+            }
+
+            .contact-section {
+                padding: 7rem 5% 3rem;
+            }
+
+            .contact-info, .contact-form {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <a href="index.html" class="logo">Bistro<span>Noir</span></a>
+        <nav class="navbar">
+            <a href="index.html">Home</a>
+            <a href="index.html#menu">Menu</a>
+            <a href="index.html#about">About</a>
+            <a href="/reserve.html">Reservations</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+        <div class="cta-btn">
+            <a href="reserve.html" class="btn">Reserve Table</a>
+        </div>
+        <div class="hamburger" id="hamburger">
+            <i class="fas fa-bars"></i>
+        </div>
+    </header>
+
+    <!-- Contact Section -->
+    <section class="contact-section" id="contact">
+        <h2 class="section-title">Contact Us</h2>
+        
+        <div class="contact-container">
+            <!-- Contact Information -->
+            <div class="contact-info">
+                <div class="info-group">
+                    <h3><i class="fas fa-map-marker-alt"></i> Address</h3>
+                    <p>123 Gourmet Street<br>New York, NY 10001</p>
+                </div>
+                
+                <div class="info-group">
+                    <h3><i class="fas fa-phone-alt"></i> Phone</h3>
+                    <a href="tel:+15551234567">+1 (555) 123-4567</a>
+                </div>
+                
+                <div class="info-group">
+                    <h3><i class="fas fa-envelope"></i> Email</h3>
+                    <a href="mailto:info@bistronoir.com">info@bistronoir.com</a>
+                </div>
+                
+                <div class="info-group">
+                    <h3><i class="fas fa-share-alt"></i> Social Media</h3>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+                
+                <div class="map-container">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.215209126327!2d-73.98784492416404!3d40.74844097138948!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDDCsDQ0JzU0LjQiTiA3M8KwNTknMDkuOSJX!5e0!3m2!1sen!2sus!4v1620000000000!5m2!1sen!2sus" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+            
+            <!-- Contact Form -->
+            <div class="contact-form">
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" class="form-control" required placeholder="John Doe">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" class="form-control" required placeholder="john@example.com">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" class="form-control" required placeholder="How can we help?">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Your Message</label>
+                        <textarea id="message" class="form-control" required placeholder="Tell us about your inquiry..."></textarea>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">Send Message</button>
+                </form>
+            </div>
+        </div>
+        
+        <!-- Hours Section -->
+        <div class="hours-section">
+            <h3 class="section-title" style="font-size: 2rem; margin-bottom: 1.5rem;">Opening Hours</h3>
+            <table class="hours-table">
+                <tr>
+                    <th>Day</th>
+                    <th>Hours</th>
+                </tr>
+                <tr>
+                    <td>Monday - Thursday</td>
+                    <td>5:00 PM - 10:00 PM</td>
+                </tr>
+                <tr>
+                    <td>Friday - Saturday</td>
+                    <td>5:00 PM - 11:00 PM</td>
+                </tr>
+                <tr>
+                    <td>Sunday</td>
+                    <td>5:00 PM - 9:00 PM</td>
+                </tr>
+            </table>
+        </div>
+    </section>
+
+    <!-- Confirmation Modal -->
+    <div class="confirmation-modal" id="confirmationModal">
+        <div class="modal-content">
+            <h3>Message Sent!</h3>
+            <p><i class="fas fa-check-circle" style="color: var(--accent); font-size: 3rem; margin-bottom: 1rem;"></i></p>
+            <p>Thank you for contacting Bistro Noir.</p>
+            <p>We'll respond to your inquiry within 24 hours.</p>
+            <button class="btn" onclick="closeModal()">Return to Site</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <a href="index.html">Home</a><br>
+                <a href="index.html#menu">Menu</a><br>
+                <a href="index.html#about">About Us</a><br>
+                <a href="reservation.html">Reservations</a>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p>123 Gourmet Street</p>
+                <p>New York, NY 10001</p>
+                <p>reservations@bistronoir.com</p>
+            </div>
+            <div class="footer-section">
+                <h4>Follow Us</h4>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2023 Bistro Noir. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const hamburger = document.getElementById('hamburger');
+        const navbar = document.querySelector('.navbar');
+        hamburger.addEventListener('click', () => {
+            navbar.classList.toggle('active');
+        });
+
+        // Contact Form Handling
+        const contactForm = document.getElementById('contactForm');
+        const confirmationModal = document.getElementById('confirmationModal');
+
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Validate form
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+
+            if (!name || !email || !subject || !message) {
+                alert('Please fill in all required fields');
+                return;
+            }
+
+            // Show confirmation modal
+            confirmationModal.style.display = 'flex';
+            
+            // In a real app, you would send data to server here
+            // Example: 
+            // fetch('/api/contact', {
+            //     method: 'POST',
+            //     body: JSON.stringify({
+            //         name, email, subject, message
+            //     })
+            // })
+        });
+
+        function closeModal() {
+            confirmationModal.style.display = 'none';
+            contactForm.reset();
+        }
+
+        // Close modal when clicking outside
+        window.addEventListener('click', (e) => {
+            if (e.target === confirmationModal) {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservations - Bistro Noir</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Open+Sans&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Base Styles */
+        :root {
+            --primary-bg: #1a1a1a;
+            --accent: #ffcc00;
+            --text: #ffffff;
+            --secondary-text: #cccccc;
+            --btn-bg: #ff4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: var(--primary-bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* Header */
+        .header {
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgba(26, 26, 26, 0.9);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            color: var(--text);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        .navbar {
+            display: flex;
+        }
+
+        .navbar a {
+            color: var(--text);
+            text-decoration: none;
+            margin-left: 2rem;
+            transition: color 0.3s;
+        }
+
+        .navbar a:hover {
+            color: var(--accent);
+        }
+
+        .btn {
+            background-color: var(--btn-bg);
+            color: var(--text);
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #ff3333;
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+
+        /* Reservation Section */
+        .reservation-section {
+            padding: 8rem 5% 5rem;
+            min-height: 100vh;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: var(--accent);
+        }
+
+        .reservation-form {
+            max-width: 700px;
+            margin: 0 auto;
+            background: #2a2a2a;
+            padding: 2.5rem;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .form-row {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group {
+            flex: 1;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--accent);
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 5px;
+            color: var(--text);
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 2px rgba(255, 204, 0, 0.2);
+        }
+
+        select.form-control {
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ffcc00'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            background-size: 12px;
+        }
+
+        textarea.form-control {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            background: var(--accent);
+            color: var(--primary-bg);
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: block;
+            width: 100%;
+            margin-top: 1.5rem;
+        }
+
+        .submit-btn:hover {
+            background: #ffd700;
+            transform: translateY(-2px);
+        }
+
+        /* Confirmation Modal */
+        .confirmation-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            background: #2a2a2a;
+            width: 90%;
+            max-width: 500px;
+            padding: 2.5rem;
+            border-radius: 10px;
+            text-align: center;
+            position: relative;
+            animation: slideUp 0.4s ease;
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .modal-content h3 {
+            font-size: 1.8rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .modal-content p {
+            margin-bottom: 1.5rem;
+            color: var(--secondary-text);
+        }
+
+        .modal-content .btn {
+            margin-top: 1.5rem;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #0d0d0d;
+            padding: 3rem 5%;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+
+        .footer-section p {
+            margin-bottom: 1rem;
+            color: var(--secondary-text);
+        }
+
+        .social-links a {
+            color: var(--text);
+            margin-right: 1rem;
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--accent);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #333;
+            color: var(--secondary-text);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+
+            .navbar {
+                position: fixed;
+                top: 80px;
+                right: -100%;
+                background-color: var(--primary-bg);
+                width: 100%;
+                height: calc(100vh - 80px);
+                flex-direction: column;
+                align-items: center;
+                padding: 2rem 0;
+                transition: right 0.3s ease;
+            }
+
+            .navbar.active {
+                right: 0;
+            }
+
+            .navbar a {
+                margin: 1rem 0;
+                font-size: 1.2rem;
+            }
+
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+
+            .reservation-section {
+                padding: 7rem 5% 3rem;
+            }
+
+            .reservation-form {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <a href="index.html" class="logo">Bistro<span>Noir</span></a>
+        <nav class="navbar">
+            <a href="/index.html">Home</a>
+            <a href="index.html#menu">Menu</a>
+            <a href="index.html#about">About</a>
+            <a href="/reserve.html">Reservations</a>
+            <a href="index.html#contact">Contact</a>
+        </nav>
+        <div class="cta-btn">
+            <a href="reservation.html" class="btn">Reserve Table</a>
+        </div>
+        <div class="hamburger" id="hamburger">
+            <i class="fas fa-bars"></i>
+        </div>
+    </header>
+
+    <!-- Reservation Section -->
+    <section class="reservation-section" id="reservations">
+        <h2 class="section-title">Make a Reservation</h2>
+        <div class="reservation-form">
+            <form id="reservationForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" class="form-control" required placeholder="John Doe">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" class="form-control" required placeholder="john@example.com">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" class="form-control" required placeholder="+1 234 567 8900">
+                    </div>
+                    <div class="form-group">
+                        <label for="party-size">Party Size</label>
+                        <select id="party-size" class="form-control" required>
+                            <option value="" disabled selected>Select guests</option>
+                            <option value="1">1 Person</option>
+                            <option value="2">2 People</option>
+                            <option value="3">3 People</option>
+                            <option value="4">4 People</option>
+                            <option value="5">5 People</option>
+                            <option value="6">6 People</option>
+                            <option value="7">7 People</option>
+                            <option value="8+">8+ People</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="date">Date</label>
+                        <input type="date" id="date" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="time">Time</label>
+                        <input type="time" id="time" class="form-control" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="special-requests">Special Requests</label>
+                    <textarea id="special-requests" class="form-control" placeholder="Dietary restrictions, allergies, celebrations..."></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn">Confirm Reservation</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Confirmation Modal -->
+    <div class="confirmation-modal" id="confirmationModal">
+        <div class="modal-content">
+            <h3>Reservation Confirmed!</h3>
+            <p><i class="fas fa-check-circle" style="color: var(--accent); font-size: 3rem; margin-bottom: 1rem;"></i></p>
+            <p>Thank you for choosing Bistro Noir.</p>
+            <p>We've sent a confirmation to your email with reservation details.</p>
+            <button class="btn" onclick="closeModal()">Return to Site</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p>123 Gourmet Street</p>
+                <p>New York, NY 10001</p>
+                <p>reservations@bistronoir.com</p>
+                <p>+1 (555) 123-4567</p>
+            </div>
+            <div class="footer-section">
+                <h4>Hours</h4>
+                <p>Monday - Thursday: 5pm - 10pm</p>
+                <p>Friday - Saturday: 5pm - 11pm</p>
+                <p>Sunday: 5pm - 9pm</p>
+            </div>
+            <div class="footer-section">
+                <h4>Follow Us</h4>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2023 Bistro Noir. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const hamburger = document.getElementById('hamburger');
+        const navbar = document.querySelector('.navbar');
+        hamburger.addEventListener('click', () => {
+            navbar.classList.toggle('active');
+        });
+
+        // Form Validation and Submission
+        const reservationForm = document.getElementById('reservationForm');
+        const confirmationModal = document.getElementById('confirmationModal');
+
+        reservationForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Validate form
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const date = document.getElementById('date').value;
+            const time = document.getElementById('time').value;
+            const partySize = document.getElementById('party-size').value;
+
+            if (!name || !email || !phone || !date || !time || !partySize) {
+                alert('Please fill in all required fields');
+                return;
+            }
+
+            // Show confirmation modal
+            confirmationModal.style.display = 'flex';
+            
+            // In a real app, you would send data to server here
+            // Example: 
+            // fetch('/api/reservations', {
+            //     method: 'POST',
+            //     body: JSON.stringify({
+            //         name, email, phone, date, time, partySize,
+            //         specialRequests: document.getElementById('special-requests').value
+            //     })
+            // })
+        });
+
+        function closeModal() {
+            confirmationModal.style.display = 'none';
+            reservationForm.reset();
+        }
+
+        // Close modal when clicking outside
+        window.addEventListener('click', (e) => {
+            if (e.target === confirmationModal) {
+                closeModal();
+            }
+        });
+
+        // Set minimum date to today
+        document.getElementById('date').min = new Date().toISOString().split('T')[0];
+    </script>
+</body>
+</html>
