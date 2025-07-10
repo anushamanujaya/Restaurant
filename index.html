@@ -3,60 +3,478 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dark Restaurant</title>
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Open+Sans&display=swap" rel="stylesheet">
-    <!-- Font Awesome Icons -->
+    <title>Bistro Noir - Fine Dining Experience</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
+
 </head>
 <body>
     <!-- Header -->
     <header class="header">
-        <a href="#" class="logo">Tesco<span> Noir</span></a>
+        <a href="#" class="logo" onclick="showSection('home')">Bistro<span>Noir</span></a>
         <nav class="navbar">
-            <a href="#home">Home</a>
-            <a href="/menu.html">Menu</a>
-            <a href="#about">About</a>
-            <a href="/reserve.html">Reservations</a>
-            <a href="/contact.html">Contact</a>
+            <a href="#" onclick="showSection('home')">Home</a>
+            <a href="#" onclick="showSection('menu')">Menu</a>
+            <a href="#" onclick="showSection('about')">About</a>
+            <a href="#" onclick="showSection('reservations')">Reservations</a>
+            <a href="#" onclick="showSection('contact')">Contact</a>
         </nav>
         <div class="cta-btn">
-            <a href="/reserve.html" class="btn">Reserve Table</a>
+            <a href="#" class="btn" onclick="showSection('reservations')">Reserve Table</a>
         </div>
         <div class="hamburger" id="hamburger">
             <i class="fas fa-bars"></i>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="hero-content">
-            <h1>Experience Fine Dining</h1>
-            <p>Savor the finest cuisines in an elegant ambiance</p>
-            <a href="/menu.html" class="btn">Explore Menu</a>
+    <!-- Home Section -->
+    <section id="home" class="section active">
+        <!-- Hero Section -->
+        <div class="hero">
+            <div class="hero-content">
+                <h1>Experience Fine Dining</h1>
+                <p>Where culinary artistry meets elegant ambiance in the heart of the city</p>
+                <div class="hero-buttons">
+                    <a href="#" class="btn" onclick="showSection('menu')">Explore Menu</a>
+                    <a href="#" class="btn btn-secondary" onclick="showSection('reservations')">Book Now</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- About Section -->
+        <section class="about">
+            <div class="about-container">
+                <div class="about-content">
+                    <h2>Our Story</h2>
+                    <p>Established in 2010, Bistro Noir has been a cornerstone of fine dining excellence. We blend modern culinary techniques with timeless traditions to create an unforgettable dining experience.</p>
+                    <p>Our passionate chefs source the finest ingredients to craft dishes that are both visually stunning and exquisitely flavorful. Every meal is a journey through taste, texture, and artistry.</p>
+                    <a href="#" class="btn" onclick="showSection('menu')">Discover Our Menu</a>
+                </div>
+                <div class="about-image">
+                    <img src="https://images.pexels.com/photos/1267320/pexels-photo-1267320.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Restaurant Interior">
+                </div>
+            </div>
+        </section>
+
+        <!-- Menu Preview Section -->
+        <section class="menu-preview">
+            <h2 class="section-title">Featured Dishes</h2>
+            <div class="menu-grid">
+                <div class="menu-item">
+                    <h3>Grilled Salmon</h3>
+                    <p>Fresh Atlantic salmon with herbs, lemon butter, and seasonal vegetables</p>
+                    <span class="price">$28.99</span>
+                </div>
+                <div class="menu-item">
+                    <h3>Beef Tenderloin</h3>
+                    <p>Prime cut beef with truffle sauce and roasted potatoes</p>
+                    <span class="price">$36.99</span>
+                </div>
+                <div class="menu-item">
+                    <h3>Lobster Risotto</h3>
+                    <p>Creamy arborio rice with fresh lobster and white wine</p>
+                    <span class="price">$32.99</span>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 2rem;">
+                <a href="#" class="btn" onclick="showSection('menu')">View Full Menu</a>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="features">
+            <h2 class="section-title">Why Choose Bistro Noir</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <i class="fas fa-utensils"></i>
+                    <h3>Exquisite Cuisine</h3>
+                    <p>Chef-crafted dishes using the finest ingredients and innovative techniques</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-wine-glass-alt"></i>
+                    <h3>Premium Wine Selection</h3>
+                    <p>Curated wine collection from renowned vineyards around the world</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-star"></i>
+                    <h3>Exceptional Service</h3>
+                    <p>Attentive staff dedicated to making your dining experience memorable</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-calendar-alt"></i>
+                    <h3>Private Events</h3>
+                    <p>Elegant venue for special occasions, celebrations, and business meetings</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-section">
+            <h2>Ready for an Unforgettable Experience?</h2>
+            <p>Reserve your table today and discover why Bistro Noir is the city's premier dining destination</p>
+            <a href="#" class="btn" onclick="showSection('reservations')">Make Reservation</a>
+        </section>
+    </section>
+
+    <!-- Full Menu Section -->
+    <section id="menu" class="section">
+        <div class="page-content">
+            <h2 class="section-title">Our Full Menu</h2>
+            <div class="full-menu">
+                <!-- Appetizers -->
+                <div class="menu-category">
+                    <h3>Appetizers</h3>
+                    <div class="menu-items">
+                        <div class="menu-item-full">
+                            <div class="menu-item-info">
+                                <h4>Oysters Rockefeller</h4>
+                                <p>Fresh oysters with spinach, herbs, and pernod cream</p>
+                            </div>
+                            <div class="menu-item-price">$18.99</div>
+                        </div>
+                        <div class="menu-item-full">
+                            <div class="menu-item-info">
+                                <h4>Foie Gras Terrine</h4>
+                                <p>Classic French preparation with brioche and fig compote</p>
+                            </div>
+                            <div class="menu-item-price">$24.99</div>
+                        </div>
+                        <div class="menu-item-full">
+                            <div class="menu-item-info">
+                                <h4>Tuna Tartare</h4>
+                                <p>Sashimi-grade tuna with avocado, cucumber, and sesame</p>
+                            </div>
+                            <div class="menu-item-price">$22.99</div>
+                        </div>
+                        <div class="menu-item-full">
+                            <div class="menu-item-info">
+                                <h4>Escargot Bourguignon</h4>
+                                <p>Traditional French snails in garlic herb butter</p>
+                            </div>
+                            <div class="menu-item-price">$16.99</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Main Courses -->
+                <div class="menu-category">
+                    <h3>Main Courses</h3>
+                    <div class="menu-items">
+                        <div class="menu-item-full">
+                            <div class="menu-item-info">
+                                <h4>Beef Tenderloin</h4>
+                                <p>Prime cut beef with truffle sauce and roasted potatoes</p>
+                            </div>
+                            <div class="menu-item-price">$36.99</div>
+                        </div>
+                        <div class="menu-item-full">
+                            <div class="menu-item-info">
+                                <h4>Grilled Salmon</h4>
+                                <p>Fresh Atlantic salmon with herbs, lemon butter, and seasonal vegetables</p>
+                            </div>
+                            <div class="menu-item-price">$28.99</div>
+                        </div>
+                        <div class="menu-item-full">
+                            <div class="menu-item-info">
+                                <h4>Lobster Risotto</h4>
+                                <p>Creamy arborio rice with fresh lobster and white wine</p>
+                            </div>
+                            <div class="menu-item-price">$32.99</div>
+                        </div>
+                        <div class="menu-item-full">
+                            <div class="menu-item-info">
+                                <h4>Duck Confit</h4>
+                                <p>Slow-cooked duck leg with cherry gastrique and wild rice</p>
+                            </div>
+                            <div class="menu-item-price">$34.99</div>
+                        </div>
+                        <div class="menu-item-full">
+                            <div class="menu-item-info">
+                                <h4>Rack of Lamb</h4>
+                                <p>Herb-crusted lamb with rosemary jus and garlic mashed potatoes</p>
+                            </div>
+                            <div class="menu-item-price">$38.99</div>
+                        </div>
+                        <div class="menu-item-full">
+                            <div class="menu-item-info">
+                                <h4>Sea Bass</h4>
+                                <p>Pan-seared Chilean sea bass with saffron sauce and asparagus</p>
+                            </div>
+                            <div class="menu-item-price">$31.99</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Desserts -->
+                <div class="menu-category">
+                    <h3>Desserts</h3>
+                    <div class="menu-items">
+                        <div class="menu-item-full">
+                            <div class="menu-item-info">
+                                <h4>Chocolate Soufflé</h4>
+                                <p>Classic French dessert with vanilla bean ice cream</p>
+                            </div>
+                            <div class="menu-item-price">$12.99</div>
+                        </div>
+                        <div class="menu-item-full">
+                            <div class="menu-item-info">
+                                <h4>Crème Brûlée</h4>
+                                <p>Vanilla custard with caramelized sugar crust</p>
+                            </div>
+                            <div class="menu-item-price">$10.99</div>
+                        </div>
+                        <div class="menu-item-full">
+                            <div class="menu-item-info">
+                                <h4>Tiramisu</h4>
+                                <p>Traditional Italian dessert with mascarpone and espresso</p>
+                            </div>
+                            <div class="menu-item-price">$9.99</div>
+                        </div>
+                        <div class="menu-item-full">
+                            <div class="menu-item-info">
+                                <h4>Lemon Tart</h4>
+                                <p>Zesty lemon curd in buttery pastry shell with meringue</p>
+                            </div>
+                            <div class="menu-item-price">$8.99</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reservations Section -->
+    <section id="reservations" class="section">
+        <div class="page-content">
+            <h2 class="section-title">Make a Reservation</h2>
+            <div class="reservation-form">
+                <div class="success-message" id="reservation-success">
+                    <i class="fas fa-check-circle"></i> Your reservation has been submitted successfully! We'll contact you within 24 hours to confirm.
+                </div>
+                <form id="reservation-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="first-name">First Name *</label>
+                            <input type="text" id="first-name" name="first-name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="last-name">Last Name *</label>
+                            <input type="text" id="last-name" name="last-name" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email">Email *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number *</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="date">Reservation Date *</label>
+                            <input type="date" id="date" name="date" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="time">Preferred Time *</label>
+                            <select id="time" name="time" required>
+                                <option value="">Select Time</option>
+                                <option value="17:00">5:00 PM</option>
+                                <option value="17:30">5:30 PM</option>
+                                <option value="18:00">6:00 PM</option>
+                                <option value="18:30">6:30 PM</option>
+                                <option value="19:00">7:00 PM</option>
+                                <option value="19:30">7:30 PM</option>
+                                <option value="20:00">8:00 PM</option>
+                                <option value="20:30">8:30 PM</option>
+                                <option value="21:00">9:00 PM</option>
+                                <option value="21:30">9:30 PM</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="party-size">Party Size *</label>
+                            <select id="party-size" name="party-size" required>
+                                <option value="">Select Party Size</option>
+                                <option value="1">1 Person</option>
+                                <option value="2">2 People</option>
+                                <option value="3">3 People</option>
+                                <option value="4">4 People</option>
+                                <option value="5">5 People</option>
+                                <option value="6">6 People</option>
+                                <option value="7">7 People</option>
+                                <option value="8">8 People</option>
+                                <option value="9+">9+ People</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="occasion">Special Occasion</label>
+                            <select id="occasion" name="occasion">
+                                <option value="">None</option>
+                                <option value="birthday">Birthday</option>
+                                <option value="anniversary">Anniversary</option>
+                                <option value="date">Date Night</option>
+                                <option value="business">Business</option>
+                                <option value="celebration">Celebration</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="special-requests">Special Requests or Dietary Restrictions</label>
+                        <textarea id="special-requests" name="special-requests" placeholder="Please let us know about any allergies, dietary restrictions, or special requests..."></textarea>
+                    </div>
+                    <div class="form-submit">
+                        <button type="submit" class="btn">Submit Reservation</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </section>
 
     <!-- About Section -->
-    <section class="about" id="about">
-        <div class="about-content">
-            <h2>Our Story</h2>
-            <p>Established in 2010, Bistro Noir blends modern culinary techniques with timeless traditions.</p>
-            <img src="placeholder-about.jpg" alt="Restaurant Interior">
+    <section id="about" class="section">
+        <div class="page-content">
+            <div class="about">
+                <div class="about-container">
+                    <div class="about-content">
+                        <h2>Our Story</h2>
+                        <p>Established in 2010, Bistro Noir has been a cornerstone of fine dining excellence in the heart of New York City. Our journey began with a simple vision: to create a dining experience that transcends the ordinary and elevates every meal into a memorable occasion.</p>
+                        <p>Our passionate team of chefs, led by Executive Chef Marcus Laurent, brings together decades of culinary expertise from renowned kitchens around the world. We source the finest ingredients from local farms and trusted suppliers, ensuring that every dish reflects our commitment to quality and sustainability.</p>
+                        <p>At Bistro Noir, we believe that dining is more than just nourishment—it's an art form. From our carefully curated wine selection to our attentive service, every detail is designed to create an atmosphere of sophistication and warmth that makes every visit special.</p>
+                    </div>
+                    <div class="about-image">
+                        <img src="https://images.pexels.com/photos/1267320/pexels-photo-1267320.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Restaurant Interior">
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- Menu Section -->
-    <section class="menu" id="menu">
-        <h2>Our Menu</h2>
-        <div class="menu-grid">
-            <div class="menu-item">
-                <h3>Grilled Salmon</h3>
-                <p>Fresh Atlantic salmon with herbs and lemon butter</p>
-                <span class="price">$24.99</span>
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <div class="page-content">
+            <h2 class="section-title">Contact Us</h2>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Get in Touch</h3>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h4>Address</h4>
+                            <p>123 Gourmet Street<br>New York, NY 10001</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h4>Phone</h4>
+                            <p>+1 (555) 123-4567</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h4>Email</h4>
+                            <p>info@bistronoir.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <h4>Hours</h4>
+                            <p>Monday - Thursday: 5:00 PM - 10:00 PM<br>
+                            Friday - Saturday: 5:00 PM - 11:00 PM<br>
+                            Sunday: 5:00 PM - 9:00 PM</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-users"></i>
+                        <div>
+                            <h4>Follow Us</h4>
+                            <div class="social-links">
+                                <a href="#"><i class="fab fa-instagram"></i></a>
+                                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="#"><i class="fab fa-tiktok"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <h3>Send us a Message</h3>
+                    <div class="success-message" id="contact-success">
+                        <i class="fas fa-check-circle"></i> Your message has been sent successfully! We'll get back to you within 24 hours.
+                    </div>
+                    <form id="contact-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="contact-name">Name *</label>
+                                <input type="text" id="contact-name" name="contact-name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="contact-email">Email *</label>
+                                <input type="email" id="contact-email" name="contact-email" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="contact-phone">Phone Number</label>
+                            <input type="tel" id="contact-phone" name="contact-phone">
+                        </div>
+                        <div class="form-group">
+                            <label for="contact-subject">Subject *</label>
+                            <select id="contact-subject" name="contact-subject" required>
+                                <option value="">Select Subject</option>
+                                <option value="reservation">Reservation Inquiry</option>
+                                <option value="private-event">Private Event</option>
+                                <option value="catering">Catering</option>
+                                <option value="feedback">Feedback</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="contact-message">Message *</label>
+                            <textarea id="contact-message" name="contact-message" required placeholder="Please share your message, questions, or feedback..."></textarea>
+                        </div>
+                        <div class="form-submit">
+                            <button type="submit" class="btn">Send Message</button>
+                        </div>
+                    </form>
+                </div>
             </div>
-            <!-- Add more menu items -->
+        </div>
+    </section>
+
+    <!-- Admin Section -->
+    <section id="admin" class="section">
+        <div class="page-content">
+            <h2 class="section-title">Reservation Management</h2>
+            <div class="admin-controls">
+                <input type="text" id="search-reservations" placeholder="Search reservations...">
+                <button class="btn" onclick="refreshReservations()">Refresh</button>
+            </div>
+            <div class="reservations-list">
+                <table id="reservations-table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>Party Size</th>
+                            <th>Contact</th>
+                            <th>Special Requests</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="reservations-body">
+                        <!-- Reservations will be loaded here -->
+                    </tbody>
+                </table>
+            </div>
         </div>
     </section>
 
@@ -65,31 +483,32 @@
         <div class="footer-content">
             <div class="footer-section">
                 <h4>Contact</h4>
-                <p>123 Gourmet Street<br>New York, NY 10001</p>
-                <p>reservations@bistronoir.com</p>
+                <p><i class="fas fa-map-marker-alt"></i> 125 Main Street<br> Badalkumbura, Sri lanka</p>
+                <p><i class="fas fa-phone"></i> 055782261 </p>
+                <p><i class="fas fa-envelope"></i> info@bistronoir.com</p>
             </div>
             <div class="footer-section">
-                <h4>Follow Us</h4>
-                <div class="social-links">
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-facebook"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                </div>
+                <h4>Hours</h4>
+                <p>Monday - Thursday: 5:00 PM - 10:00 PM</p>
+                <p>Friday - Saturday: 5:00 PM - 11:00 PM</p>
+                <p>Sunday: 5:00 PM - 9:00 PM</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <p><a href="#" onclick="showSection('home')">Home</a></p>
+                <p><a href="#" onclick="showSection('menu')">Menu</a></p>
+                <p><a href="#" onclick="showSection('about')">About</a></p>
+                <p><a href="#" onclick="showSection('reservations')">Reservations</a></p>
+            </div>
+            <div class="footer-section">
+                <h4>Admin</h4>
+                <p><a href="#" onclick="showSection('admin')">View Reservations</a></p>
             </div>
         </div>
         <div class="copyright">
-            <p>&copy; 2023 Bistro Noir. All rights reserved.</p>
+            <p>&copy; 2025 Bistro Noir. All rights reserved.</p>
         </div>
     </footer>
-
-    <!-- JavaScript for Mobile Menu -->
-    <script>
-        const hamburger = document.getElementById('hamburger');
-        const navbar = document.querySelector('.navbar');
-
-        hamburger.addEventListener('click', () => {
-            navbar.classList.toggle('active');
-        });
-    </script>
+    <script src="scripts.js"></script>
 </body>
 </html>
